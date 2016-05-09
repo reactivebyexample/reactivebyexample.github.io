@@ -1,32 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on Functional Reactive Programming in Swift</title>
+    <title>Introduction on Examples of Functional Reactive Programming - in Swift</title>
     <link>http://www.reactivebyexample.com/categories/introduction/</link>
-    <description>Recent content in Introduction on Functional Reactive Programming in Swift</description>
+    <description>Recent content in Introduction on Examples of Functional Reactive Programming - in Swift</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 29 Mar 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 May 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://www.reactivebyexample.com/categories/introduction/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Flatmap</title>
-      <link>http://www.reactivebyexample.com/posts/newest/</link>
-      <pubDate>Sat, 29 Mar 2014 00:00:00 +0000</pubDate>
+      <link>http://www.reactivebyexample.com/posts/flatmap/</link>
+      <pubDate>Mon, 09 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.reactivebyexample.com/posts/newest/</guid>
+      <guid>http://www.reactivebyexample.com/posts/flatmap/</guid>
       <description>
 
-&lt;h2 id=&#34;first-heading:912493bb798d2cf24137bef8b4adb6f6&#34;&gt;First Heading&lt;/h2&gt;
+&lt;h2 id=&#34;first-heading:cf7e413df3b7699ab6967b92f5fa7d5e&#34;&gt;First Heading&lt;/h2&gt;
 
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, consequatur aspernatur omnis iste. Voluptates, id inventore ea natus ab sed amet ipsa ratione sunt dignissimos. Soluta illum aliquid repellendus recusandae.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;let producer1 = SignalProducer&amp;lt;AnyObject, NSError&amp;gt; { observer, disposable in
+    let task1 = NSURLSession.sharedSession()
+    .dataTaskWithURL(NSURL(string:&amp;quot;http://jsonplaceholder.typicode.com/posts/1&amp;quot;)!
+    , completionHandler: { (data, response, error) in
+        if error != nil {
+            print(&amp;quot;failed&amp;quot;)
+            observer.sendFailed(NSError(domain:&amp;quot;&amp;quot;, code:5, userInfo:nil))
+        } else {
+            print(&amp;quot;completed&amp;quot;)
+            let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
+            observer.sendNext(json)
+        }
+    })
+    task1.resume()
+}
 
-&lt;h3 id=&#34;sub:912493bb798d2cf24137bef8b4adb6f6&#34;&gt;Sub&lt;/h3&gt;
+let producer2 = SignalProducer&amp;lt;AnyObject, NSError&amp;gt; { observer, disposable in
+    let task2 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string:&amp;quot;http://jsonplaceholder.typicode.com/users/1&amp;quot;)!, completionHandler: { (data, response, error) in
+        if error != nil {
+            print(&amp;quot;failed&amp;quot;)
+            observer.sendFailed(NSError(domain:&amp;quot;&amp;quot;, code:5, userInfo:nil))
+        } else {
+            print(&amp;quot;completed&amp;quot;)
+            let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
+            observer.sendNext(json)
+        }
+    })
+    task2.resume()
+}
 
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, perferendis saepe voluptatem a nesciunt architecto voluptas deleniti dolor tempora quasi quidem odit rem fugit magnam minima quam dolores vel id?&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion:912493bb798d2cf24137bef8b4adb6f6&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, numquam ipsa ad! Quasi, deleniti quae sint consequatur error corporis dicta inventore alias soluta dignissimos? Molestias, quia ab deserunt repellat ut.&lt;/p&gt;
+producer1.flatMap(.Latest) { result -&amp;gt; SignalProducer&amp;lt;AnyObject, NSError&amp;gt; in
+    print(result)
+    return producer2
+}.startWithNext{ value in
+    print(value)
+}
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
