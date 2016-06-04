@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on Examples of Functional Reactive Programming - in Swift</title>
-    <link>http://www.reactivebyexample.com/categories/introduction/</link>
-    <description>Recent content in Introduction on Examples of Functional Reactive Programming - in Swift</description>
+    <title>Networking on Examples of Functional Reactive Programming - in Swift</title>
+    <link>http://www.reactivebyexample.com/tags/networking/</link>
+    <description>Recent content in Networking on Examples of Functional Reactive Programming - in Swift</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 19 May 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://www.reactivebyexample.com/categories/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.reactivebyexample.com/tags/networking/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Chaining multiple network requests</title>
