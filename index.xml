@@ -10,10 +10,10 @@
     
     <item>
       <title>Chaining multiple network requests</title>
-      <link>http://www.reactivebyexample.com/posts/flatmap/</link>
+      <link>http://www.reactivebyexample.com/chaining-network-requests/</link>
       <pubDate>Thu, 19 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.reactivebyexample.com/posts/flatmap/</guid>
+      <guid>http://www.reactivebyexample.com/chaining-network-requests/</guid>
       <description>
 
 &lt;p&gt;FRP promises a lot of things.  During the first talk I saw about ReactiveCocoa, I was shown that it could chain network operations.  That sounded awesome, as I really don&amp;rsquo;t like asynchronous callback hell.&lt;/p&gt;
@@ -23,7 +23,7 @@
 &lt;script type=&#34;text/javascript&#34; src=&#34;http://gist.github.com/ee1d466cfc56c288926117fd9a07080b.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;h3 id=&#34;what-did-you-just-do-above:cf7e413df3b7699ab6967b92f5fa7d5e&#34;&gt;What did you just do above?&lt;/h3&gt;
+&lt;h3 id=&#34;what-did-you-just-do-above:a27a27d9e041b532ade53abd615613f1&#34;&gt;What did you just do above?&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Wrap up the work for a call to &lt;code&gt;/users&lt;/code&gt; in a SignalProducer.  This is a sequence of events which you want to control, hence it is a &amp;ldquo;cold&amp;rdquo; signal which in RAC is achieved with a &amp;lsquo;SignalProducer&amp;rsquo;&lt;/p&gt;&lt;/li&gt;
